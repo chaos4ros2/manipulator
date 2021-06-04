@@ -25,15 +25,15 @@ return_type ManipulatorHardware::configure(const hardware_interface::HardwareInf
     // Get parameters from URDF
     // Initialize member variables
     // info_の初期化はどこなにかは不明
-    // Todo、urdfにパラメーターの用意
+    // Todo、urdfにパラメーターの用意 => port_nameの追加
     std::string port_name = info_.hardware_parameters["port_name"];
-    // ...
+    timeout_seconds_ = std::stod(info_.hardware_parameters["timeout_seconds"]);
 
     std::vector<uint8_t> servo_id_list;
     for (auto joint : info_.joints) {
         // Todo:urdfのパラメーターの用意：https://github.com/rt-net/crane_plus/blob/use_new_ros2_control/crane_plus_description/urdf/crane_plus.ros2_control.xacro#L44
         if (joint.parameters["servo_id"] != "") {
-            dxl_id_list.push_back(std::stoi(joint.parameters["servo_id"]));
+            servo_id_list.push_back(std::stoi(joint.parameters["servo_id"]));
         } else {
             RCLCPP_ERROR(
             rclcpp::get_logger("ManipulatorHardware"),

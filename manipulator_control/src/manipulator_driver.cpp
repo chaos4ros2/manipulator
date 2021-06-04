@@ -4,8 +4,10 @@
 // https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685.cpp#L28
 ManipulatorDriver::ManipulatorDriver(
     const std::string &deviceFile,
-    const int address)
-  : id_list_(id_list) 
+    const int address,
+    const int frequency_hz,
+    std::vector<uint8_t> id_list)
+  : frequency_hz_(frequency_hz), id_list_(id_list) 
 {
     // 必ず初期化する（分ける必要があれば初期化用メンバー関数を追加する）
     bool autoInitialize = true;
@@ -17,6 +19,9 @@ ManipulatorDriver::ManipulatorDriver(
         string &deviceFile,
         address,
         autoInitialize);
+    // https://github.com/chaos4ros2/servo/blob/main/servo/output_servo.py#L48
+    // どの値を設定すべきかは要検討
+    set_feq(frequency_hz_);
 }
 
 // https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685Impl.cpp#L131
