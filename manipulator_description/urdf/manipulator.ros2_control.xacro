@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="manipulator_ros2_control_settings"
+    params="name
+            name_joint_0
+            name_joint_1
+            joint_0_lower_limit
+            joint_0_upper_limit
+            joint_1_lower_limit
+            joint_1_upper_limit">
+
+    <ros2_control name="${name}" type="system">
+      <hardware>
+        <plugin>manipulator_hardware/ManipulatorHardware</plugin>
+        <param name="timeout_seconds">5.0</param>
+      </hardware>
+
+      <joint name="${name_joint_0}">
+        <command_interface name="position">
+          <param name="min">${joint_0_lower_limit}</param>
+          <param name="max">${joint_0_upper_limit}</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <param name="servo_id">0</param>
+      </joint>
+
+      <joint name="${name_joint_1}">
+        <command_interface name="position">
+          <param name="min">${joint_1_lower_limit}</param>
+          <param name="max">${joint_1_upper_limit}</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <param name="servo_id">3</param>
+      </joint>
+
+    </ros2_control>
+  </xacro:macro>
+</robot>

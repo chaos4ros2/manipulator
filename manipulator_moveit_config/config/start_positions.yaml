@@ -1,0 +1,10 @@
+fake_joint_driver_node:
+  ros__parameters:
+    start_position:
+      joints:
+        - joint0
+        - joint1
+      values:
+        - 0.0
+        - 0.1
+
