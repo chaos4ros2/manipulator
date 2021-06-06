@@ -5,6 +5,7 @@
 // https://github.com/kerry-t-johnson/i2c_pwm
 
 // 疑問：この２行の意味は不明（外したらどうなる？完成後テストする）
+// 解答：重複定義を避けるための構文(プリプロセッサ) https://programgenjin.hatenablog.com/entry/2019/02/22/210141
 #ifndef MANIPULATOR_CONTROL__MANIPULATOR_DRIVER_HPP_
 #define MANIPULATOR_CONTROL__MANIPULATOR_DRIVER_HPP_
 

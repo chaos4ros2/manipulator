@@ -1,0 +1,18 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    joint_state_controller:
+      type: joint_state_controller/JointStateController
+
+crane_plus_arm_controller:
+  ros__parameters:
+    joints:
+      - joint0
+      - joint1
+
+    command_interfaces:
+      - position
+
+    state_interfaces:
+      - position
