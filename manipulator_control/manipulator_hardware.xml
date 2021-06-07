@@ -1,0 +1,9 @@
+<library path="manipulator_hardware">
+  <class name="manipulator_hardware/ManipulatorHardware"
+         type="manipulator_control::ManipulatorHardware"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      A manipulator hardware plugin for the ros2_control.
+    </description>
+  </class>
+</library>
