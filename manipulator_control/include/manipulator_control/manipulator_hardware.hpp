@@ -8,9 +8,12 @@
 // manipulator/manipulator_driver.hppだとmanipulatorパッケージのmanipulator_driver.hppになるから
 // そもそもmanipulatorパッケージではなく、manipulator_controlパッケージだ
 // 同じパッケージなので、コンパイル時に使うからまだそのパッケージができてないはず、manipulator_control/manipulator_driver.hppで試してもだめのはず
+// 検証した結果、"manipulator_control/manipulator_driver.hpp"でもいける。
 // 同じフォルダーなので、単に"manipulator_driver.hpp"だけでいいはず
-#include "manipulator_control/manipulator_driver.hpp"
-#include "manipulator_control/visibility_control.h"
+// #include "manipulator/manipulator_driver.hpp"  ×
+// #include "manipulator_control/manipulator_driver.hpp" ○
+#include "manipulator_driver.hpp"
+#include "visibility_control.h"
 #include "hardware_interface/base_interface.hpp"
 #include "hardware_interface/handle.hpp"
 #include "hardware_interface/hardware_info.hpp"
