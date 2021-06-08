@@ -60,3 +60,5 @@ class Manipulator {
         uint16_t angle_to_radian(const uint16_t angle);
         uint16_t pluse_to_radian(const uint16_t pluse);
 }
+
+#endif  // MANIPULATOR_CONTROL__MANIPULATOR_DRIVER_HPP_
