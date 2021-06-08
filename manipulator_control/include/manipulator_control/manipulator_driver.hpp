@@ -10,7 +10,8 @@
 #define MANIPULATOR_CONTROL__MANIPULATOR_DRIVER_HPP_
 
 // ドライバーパッケージを読み込む
-#include <i2c_pwm/Pca9685.cpp>
+// 疑問：<i2c_pwm/Pca9685.cpp>を読み込むと「fatal error: i2c_pwm/Pca9685.cpp: No such file or directory」になる
+#include <i2c_pwm/Pca9685.hpp>
 // 以下三つの固有モジュールの使い方を要調査
 #include <memory>
 #include <string>
