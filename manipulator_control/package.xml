@@ -14,7 +14,6 @@
   <depend>i2c_pwm</depend>
   <depend>hardware_interface</depend>
   <depend>pluginlib</depend>
-  <depend>rclcpp</depend>
   <depend>ros2_controllers</depend>
   <depend>ros2controlcli</depend>
   <depend>xacro</depend>
