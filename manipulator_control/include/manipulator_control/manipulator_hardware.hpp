@@ -68,4 +68,4 @@ class ManipulatorHardware : public hardware_interface::BaseInterface<hardware_in
 };   
 } // namespace manipulator_control
 
-#endif  // MANIPULATOR_CONTROL__MANIPULATOR_DRIVER_HPP_
+#endif  // MANIPULATOR_CONTROL__MANIPULATOR_HARDWARE_HPP_
