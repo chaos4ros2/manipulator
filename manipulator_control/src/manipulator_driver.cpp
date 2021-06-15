@@ -15,13 +15,13 @@ ManipulatorDriver::ManipulatorDriver(
     // shared_ptrは「https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685.cpp」で提供
     // shared_ptrをまだ理解できてない
     // shared_ptrのため、このファイルではデストラクターを実装する必要はなさそう。
-    pca9685_handler_ = std::shared_ptr<Pca9685> Pca9685::create(
+    pca9685_handler_ = std::shared_ptr<i2c_pwm::Pca9685> Pca9685::create(
         string &deviceFile,
         address,
         autoInitialize);
     // https://github.com/chaos4ros2/servo/blob/main/servo/output_servo.py#L48
     // どの値を設定すべきかは要検討
-    set_feq(frequency_hz_);
+    set_feq(frequency_hz);
 }
 
 // https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685Impl.cpp#L131

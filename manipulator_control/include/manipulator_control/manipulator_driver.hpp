@@ -17,7 +17,7 @@
 #include <string>
 #include <vector>
 
-class Manipulator {
+class ManipulatorDriver {
     public:
         // https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685.cpp
         // 必要な引数は1.deviceFile / 2.address / 3.autoInitialize
@@ -42,7 +42,7 @@ class Manipulator {
     bool read_present_joint_positions(std::vector<double> * joint_positions);
 
     private:
-        std::shared_ptr<Pca9685> pca9685_handler_;
+        std::shared_ptr<i2c_pwm::Pca9685> pca9685_handler_;
         std::vector<uint8_t> id_list_;
         // std::string last_error_log_;
         // write_goal_joint_positions()用関数群
@@ -59,6 +59,6 @@ class Manipulator {
         // radianをdoubleにしなくても大丈夫かな
         uint16_t angle_to_radian(const uint16_t angle);
         uint16_t pluse_to_radian(const uint16_t pluse);
-}
+};
 
 #endif  // MANIPULATOR_CONTROL__MANIPULATOR_DRIVER_HPP_
