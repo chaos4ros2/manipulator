@@ -94,7 +94,7 @@ bool read_present_joint_positions(std::vector<double> * joint_positions)
           // https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685Impl.cpp#L196
           auto off_high_value = pca9685_handler_->read(register_address);
           // https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685Impl.cpp#L282
-          auto pluse = off_high_value << UPPER_BYTE_SHIFT 
+          auto pluse = off_high_value << UPPER_BYTE_SHIFT; 
           joint_positions->push_back(pluse_to_radian(pluse));
     }
 
