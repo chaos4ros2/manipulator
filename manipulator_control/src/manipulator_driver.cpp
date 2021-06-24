@@ -1,4 +1,10 @@
 // 参考：https://github.com/rt-net/crane_plus/blob/master/crane_plus_control/src/crane_plus_driver.cpp
+#include <algorithm>
+#include <cmath> // M_PI
+#include <memory>
+#include <string>
+#include <vector>
+
 #include "manipulator_control/manipulator_driver.hpp"
 
 // https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685.cpp#L28
