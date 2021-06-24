@@ -27,6 +27,8 @@ return_type ManipulatorHardware::configure(const hardware_interface::HardwareInf
     // info_の初期化はどこなにかは不明
     // Todo、urdfにパラメーターの用意 => port_nameの追加
     std::string port_name = info_.hardware_parameters["port_name"];
+    const int frequency_hz = info_.hardware_parameters["frequency_hz"];
+    const int address = info_.hardware_parameters["address"];
     timeout_seconds_ = std::stod(info_.hardware_parameters["timeout_seconds"]);
 
     std::vector<uint8_t> servo_id_list;
@@ -53,7 +55,7 @@ return_type ManipulatorHardware::configure(const hardware_interface::HardwareInf
     // 青木さんはここでbaudrateをも引数として渡し、open_port()メソッド中でsetBaudRate()を呼び出した。自分もset_feq()を、初期化に追加しよう。
     // open_port()を実装してないから
     // https://github.com/rt-net/crane_plus/blob/use_new_ros2_control/crane_plus_control/src/crane_plus_driver.cpp#L70
-    driver_ = std::make_shared<ManipulatorDriver>(port_name, address);
+    driver_ = std::make_shared<ManipulatorDriver>(port_name, address, frequency_hz);
     if (!driver_->open_port()) {
         RCLCPP_ERROR(rclcpp::get_logger("ManipulatorHardware"), driver_->get_last_error_log());
         return return_type::ERROR;

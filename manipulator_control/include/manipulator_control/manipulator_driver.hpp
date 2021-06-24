@@ -11,6 +11,7 @@
 
 // ドライバーパッケージを読み込む
 // 疑問：<i2c_pwm/Pca9685.cpp>を読み込むと「fatal error: i2c_pwm/Pca9685.cpp: No such file or directory」になる
+// 解決：<i2c_pwm/Pca9685.hpp>を読み込むべき
 #include <i2c_pwm/Pca9685.hpp>
 // 以下三つの固有モジュールの使い方を要調査
 #include <memory>
@@ -23,23 +24,25 @@ class ManipulatorDriver {
         // 必要な引数は1.deviceFile / 2.address / 3.autoInitialize
         ManipulatorDriver(const std::string &deviceFile,
                           const int address,
+                          const int frequency_hz,
                           bool autoInitialize);
         // Pca9685.cppで提供されてるshared_ptrのため、デストラクターは不要のはず
         // ~ManipulatorDriver();
 
-    // autoInitializeをtrueにすることでインスタンス化時に必ず初期化を保証するため不要
-    // bool open_port(void);
-    void close_port(void);
+        // autoInitializeをtrueにすることでインスタンス化時に必ず初期化を保証するため不要
+        // bool open_port(void);
+        void close_port(void);
 
-    // https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685Impl.cpp#L146
-    // https://github.com/chaos4ros2/servo/blob/main/servo/output_servo.py#L48
-    void set_feq(uint16_t value);
-    // last_error_log_を使わないため一旦コメントアウト
-    // std::string get_last_error_log(void);
+        // https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685Impl.cpp#L146
+        // https://github.com/chaos4ros2/servo/blob/main/servo/output_servo.py#L48
+        void set_feq(uint16_t value);
+        // last_error_log_を使わないため一旦コメントアウト
+        // std::string get_last_error_log(void);
 
-    // 疑問：bool型で宣言する理由（データの代入は処理過程中で済ませたからだ joint_positions）
-    bool write_goal_joint_positions(const std::vector<double> & goal_positions);
-    bool read_present_joint_positions(std::vector<double> * joint_positions);
+        // 疑問：bool型で宣言する理由
+        // 解決：データの代入は処理中で済ませたので、戻りは不要 joint_positions
+        bool write_goal_joint_positions(const std::vector<double> & goal_positions);
+        bool read_present_joint_positions(std::vector<double> * joint_positions);
 
     private:
         std::shared_ptr<i2c_pwm::Pca9685> pca9685_handler_;

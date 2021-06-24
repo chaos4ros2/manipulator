@@ -16,7 +16,7 @@ ManipulatorDriver::ManipulatorDriver(
     // shared_ptrをまだ理解できてない
     // shared_ptrのため、このファイルではデストラクターを実装する必要はなさそう。
     pca9685_handler_ = std::shared_ptr<i2c_pwm::Pca9685> Pca9685::create(
-        string &deviceFile,
+        deviceFile,
         address,
         autoInitialize);
     // https://github.com/chaos4ros2/servo/blob/main/servo/output_servo.py#L48

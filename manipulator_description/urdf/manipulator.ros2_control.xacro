@@ -16,6 +16,7 @@
         <param name="timeout_seconds">5.0</param>
         <param name="port_name">/dev/i2c-1</param>
         <param name="frequency_hz">60</param>
+        <param name="address">40</param>
       </hardware>
 
       <joint name="${name_joint_0}">
