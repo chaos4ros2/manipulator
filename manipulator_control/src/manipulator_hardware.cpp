@@ -63,27 +63,27 @@ return_type ManipulatorHardware::configure(const hardware_interface::HardwareInf
 
     // Verify that the interface required by ManipulatorHardware is set in the URDF.
     // 意味不明
-  　for (const hardware_interface::ComponentInfo & joint : info_.joints) {
-  　  if (joint.command_interfaces.size() != 1) {
-  　    RCLCPP_ERROR(
-  　      rclcpp::get_logger("ManipulatorHardware"),
-  　      "Joint '%s' has %d command interfaces found. 1 expected.",
-  　      joint.name.c_str(), joint.command_interfaces.size());
-  　    return return_type::ERROR;
-  　  }
-　
-  　  if (joint.command_interfaces[0].name != hardware_interface::HW_IF_POSITION) {
-  　    RCLCPP_ERROR(
-  　      rclcpp::get_logger("ManipulatorHardware"),
-  　      "Joint '%s' have %s command interfaces found. '%s' expected.",
-  　      joint.name.c_str(), joint.command_interfaces[0].name.c_str(),
-  　      hardware_interface::HW_IF_POSITION);
-  　    return return_type::ERROR;
-  　  }
-  　}
-　
-  　status_ = hardware_interface::status::CONFIGURED;
-  　return return_type::OK;    
+    for (const hardware_interface::ComponentInfo & joint : info_.joints) {
+      if (joint.command_interfaces.size() != 1) {
+        RCLCPP_ERROR(
+          rclcpp::get_logger("ManipulatorHardware"),
+          "Joint '%s' has %d command interfaces found. 1 expected.",
+          joint.name.c_str(), joint.command_interfaces.size());
+        return return_type::ERROR;
+      }
+
+      if (joint.command_interfaces[0].name != hardware_interface::HW_IF_POSITION) {
+        RCLCPP_ERROR(
+          rclcpp::get_logger("ManipulatorHardware"),
+          "Joint '%s' have %s command interfaces found. '%s' expected.",
+          joint.name.c_str(), joint.command_interfaces[0].name.c_str(),
+          hardware_interface::HW_IF_POSITION);
+        return return_type::ERROR;
+      }
+    }
+
+    status_ = hardware_interface::status::CONFIGURED;
+    return return_type::OK;    
 }
 
 std::vector<hardware_interface::StateInterface>ManipulatorHardware::export_state_interfaces()
