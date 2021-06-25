@@ -46,9 +46,9 @@ class ManipulatorDriver {
 
     private:
         std::shared_ptr<i2c_pwm::Pca9685> pca9685_handler_;
-        std::vector<uint8_t> id_list_;
         int frequency_hz_;
         std::vector<uint8_t> id_list_;
+
         // std::string last_error_log_;
         // write_goal_joint_positions()用関数群
         // sg90のパルス指定には角度が使用されるため、角度を軸にする変換関数を用意する 6/3
