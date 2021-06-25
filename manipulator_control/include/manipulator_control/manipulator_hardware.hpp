@@ -32,7 +32,7 @@ namespace manipulator_control
 class ManipulatorHardware : public hardware_interface::BaseInterface<hardware_interface::SystemInterface>
 {
     public:
-        RCLCPP_SHARED_PTR_DEFINITIONS(ManipulatorHardware);
+        RCLCPP_SHARED_PTR_DEFINITIONS(ManipulatorHardware)
 
         // MANIPULATOR_CONTROL_PUBLIC
         // ~ManipulatorHardware();
