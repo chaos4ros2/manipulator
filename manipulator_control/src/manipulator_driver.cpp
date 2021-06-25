@@ -21,7 +21,7 @@ ManipulatorDriver::ManipulatorDriver(
     // shared_ptrは「https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685.cpp」で提供
     // shared_ptrをまだ理解できてない
     // shared_ptrのため、このファイルではデストラクターを実装する必要はなさそう。
-    pca9685_handler_ = std::shared_ptr<i2c_pwm::Pca9685> i2c_pwm::Pca9685::create(
+    pca9685_handler_ = Pca9685::create(
         deviceFile,
         address,
         autoInitialize);
