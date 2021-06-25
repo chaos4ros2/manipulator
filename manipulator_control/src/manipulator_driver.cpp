@@ -89,6 +89,14 @@ uint16_t ManipulatorDriver::pluse_to_radian(const uint16_t pluse)
     return angle_to_radian(pluse_to_angle(pluse));      
 }
 
+// https://docs.microsoft.com/ja-jp/cpp/cpp/namespaces-cpp?view=msvc-160#anonymous-or-unnamed-namespaces
+// https://github.com/chaos4ros2/manipulator/blob/master/i2c_pwm/src/Pca9685Impl.cpp#L46
+// 元のパッケージ内では匿名namespaceとなってるため、外部では参照できないため一時的に定義する。
+// Todo:いずれ元の定義先をグローバルnamespaceに変える
+namespace {
+    const uint8_t REGISTER_CHANNEL0_OFF_HIGH = 0x09;
+    const uint8_t UPPER_BYTE_SHIFT = 8;
+}
 // 参考：https://github.com/rt-net/crane_plus/blob/master/crane_plus_control/src/crane_plus_driver.cpp#L168
 bool ManipulatorDriver::read_present_joint_positions(std::vector<double> * joint_positions)
 {
@@ -96,11 +104,11 @@ bool ManipulatorDriver::read_present_joint_positions(std::vector<double> * joint
           // サーボのidで取得すべきアドレスを計算する
           const int channel_offset = servo_id * 4;
           // https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685Impl.cpp#L281
-          auto register_address = i2c_pwm::Pca9685::REGISTER_CHANNEL0_OFF_HIGH + channel_offset; 
+          auto register_address = REGISTER_CHANNEL0_OFF_HIGH + channel_offset; 
           // https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685Impl.cpp#L196
           auto off_high_value = pca9685_handler_->read(register_address);
           // https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685Impl.cpp#L282
-          auto pluse = off_high_value << i2c_pwm::Pca9685::UPPER_BYTE_SHIFT; 
+          auto pluse = off_high_value << UPPER_BYTE_SHIFT; 
           joint_positions->push_back(pluse_to_radian(pluse));
     }
 
