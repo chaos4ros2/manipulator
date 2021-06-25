@@ -90,7 +90,7 @@ uint16_t ManipulatorDriver::pluse_to_radian(const uint16_t pluse)
 }
 
 // 参考：https://github.com/rt-net/crane_plus/blob/master/crane_plus_control/src/crane_plus_driver.cpp#L168
-bool read_present_joint_positions(std::vector<double> * joint_positions)
+bool ManipulatorDriver::read_present_joint_positions(std::vector<double> * joint_positions)
 {
     for (auto servo_id : id_list_) {
           // サーボのidで取得すべきアドレスを計算する
