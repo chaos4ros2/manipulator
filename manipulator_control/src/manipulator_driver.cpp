@@ -96,11 +96,11 @@ bool ManipulatorDriver::read_present_joint_positions(std::vector<double> * joint
           // サーボのidで取得すべきアドレスを計算する
           const int channel_offset = servo_id * 4;
           // https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685Impl.cpp#L281
-          auto register_address = REGISTER_CHANNEL0_OFF_HIGH + channel_offset; 
+          auto register_address = i2c_pwm::Pca9685::REGISTER_CHANNEL0_OFF_HIGH + channel_offset; 
           // https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685Impl.cpp#L196
           auto off_high_value = pca9685_handler_->read(register_address);
           // https://github.com/kerry-t-johnson/i2c_pwm/blob/master/src/Pca9685Impl.cpp#L282
-          auto pluse = off_high_value << UPPER_BYTE_SHIFT; 
+          auto pluse = off_high_value << i2c_pwm::Pca9685::UPPER_BYTE_SHIFT; 
           joint_positions->push_back(pluse_to_radian(pluse));
     }
 
