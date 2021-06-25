@@ -25,7 +25,7 @@ class ManipulatorDriver {
         ManipulatorDriver(const std::string &deviceFile,
                           const int address,
                           const int frequency_hz,
-                          bool autoInitialize);
+                          std::vector<uint8_t> id_list);
         // Pca9685.cppで提供されてるshared_ptrのため、デストラクターは不要のはず
         // ~ManipulatorDriver();
 
