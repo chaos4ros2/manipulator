@@ -34,8 +34,8 @@ class ManipulatorHardware : public hardware_interface::BaseInterface<hardware_in
     public:
         RCLCPP_SHARED_PTR_DEFINITIONS(ManipulatorHardware)
 
-        // MANIPULATOR_CONTROL_PUBLIC
-        // ~ManipulatorHardware();
+        MANIPULATOR_CONTROL_PUBLIC
+        ~ManipulatorHardware();
 
         MANIPULATOR_CONTROL_PUBLIC
         return_type configure(const hardware_interface::HardwareInfo & info) override;
