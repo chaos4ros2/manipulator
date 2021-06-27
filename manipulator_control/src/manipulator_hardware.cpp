@@ -27,8 +27,8 @@ return_type ManipulatorHardware::configure(const hardware_interface::HardwareInf
     // info_の初期化はどこなにかは不明
     // Todo、urdfにパラメーターの用意 => port_nameの追加
     std::string port_name = info_.hardware_parameters["port_name"];
-    const int frequency_hz = info_.hardware_parameters["frequency_hz"];
-    const int address = info_.hardware_parameters["address"];
+    int frequency_hz = std::stoi(info_.hardware_parameters["frequency_hz"]);
+    int address = std::stoi(info_.hardware_parameters["address"]);
     timeout_seconds_ = std::stod(info_.hardware_parameters["timeout_seconds"]);
 
     std::vector<uint8_t> servo_id_list;
