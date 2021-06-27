@@ -37,4 +37,20 @@
     </visual>
   </link>
 
+  <xacro:property name="NAME_JOINT_0" value="joint0"/>
+  <xacro:property name="NAME_JOINT_1" value="joint1"/>
+  <xacro:property name="JOINT_0_LOWER_LIMIT" value="-70"/>
+  <xacro:property name="JOINT_0_UPPER_LIMIT" value="70"/>
+  <xacro:property name="JOINT_1_LOWER_LIMIT" value="-70"/>
+  <xacro:property name="JOINT_1_UPPER_LIMIT" value="70"/>  
+
+  <xacro:manipulator_ros2_control_settings 
+    name="manipulator"
+    name_joint_0="${name_joint_0}"
+    name_joint_1="${NAME_JOINT_1}"
+    joint_0_lower_limit="${JOINT_0_LOWER_LIMIT}"
+    joint_0_upper_limit="${JOINT_0_UPPER_LIMIT}"
+    joint_1_lower_limit="${JOINT_1_LOWER_LIMIT}"
+    joint_1_upper_limit="${JOINT_1_UPPER_LIMIT}" />
+
 </robot>
