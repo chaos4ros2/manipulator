@@ -146,7 +146,6 @@ return_type ManipulatorHardware::read()
     if (!driver_->read_present_joint_positions(&joint_positions)) {
         RCLCPP_ERROR(
             rclcpp::get_logger("ManipulatorHardware"),
-            driver_->get_last_error_log()); // Todo:未実装のはず
         return return_type::ERROR;
     } else {
         for (uint i = 0; i < hw_position_states_.size(); ++i) {
@@ -169,7 +168,6 @@ return_type ManipulatorHardware::write()
     if (!driver_->write_goal_joint_positions(hw_position_commands_)) {
         RCLCPP_ERROR(
             rclcpp::get_logger("ManipulatorHardware"),
-            driver_->get_last_error_log()); // Todo:未実装のはず
         return return_type::ERROR;
     }
   
