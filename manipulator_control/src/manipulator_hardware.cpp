@@ -56,10 +56,11 @@ return_type ManipulatorHardware::configure(const hardware_interface::HardwareInf
     // open_port()を実装してないから
     // https://github.com/rt-net/crane_plus/blob/use_new_ros2_control/crane_plus_control/src/crane_plus_driver.cpp#L70
     driver_ = std::make_shared<ManipulatorDriver>(port_name, address, frequency_hz, servo_id_list);
-    if (!driver_->open_port()) {
-        RCLCPP_ERROR(rclcpp::get_logger("ManipulatorHardware"), driver_->get_last_error_log());
-        return return_type::ERROR;
-    }
+    // open_port()に該当のメソッドはない、一旦削除する
+    // if (!driver_->open_port()) {
+    //     RCLCPP_ERROR(rclcpp::get_logger("ManipulatorHardware"), driver_->get_last_error_log());
+    //     return return_type::ERROR;
+    // }
 
     // Verify that the interface required by ManipulatorHardware is set in the URDF.
     // 意味不明
@@ -91,7 +92,7 @@ std::vector<hardware_interface::StateInterface>ManipulatorHardware::export_state
     std::vector<hardware_interface::StateInterface> state_interfaces;
     for (uint i = 0; i < info_.joints.size(); i++) {
         state_interfaces.emplace_back(hardware_interface::StateInterface(
-        info_.joints[i].name, hardware_interface::HW_IF_POSITION, &hw_states_[i]));
+        info_.joints[i].name, hardware_interface::HW_IF_POSITION, &hw_position_states_[i]));
     }
 
     return state_interfaces;
@@ -114,15 +115,8 @@ std::vector<hardware_interface::CommandInterface>ManipulatorHardware::export_com
 
 return_type ManipulatorHardware::start()
 {
-    if (!driver_->torque_enable(false)) {
-        RCLCPP_ERROR(
-            rclcpp::get_logger("ManipulatorHardware"),
-            driver_->get_last_error_log()); // Todo:未実装のはず
-        return return_type::ERROR;
-    }
     // Set current timestamp to disable the communication timeout.
     prev_comm_timestamp_ = rclcpp::Clock().now();
-    timeout_has_printed_ = false;
   
     // Set current joint positions to hw_position_commands.
     read();
@@ -143,11 +137,8 @@ return_type ManipulatorHardware::stop()
 return_type ManipulatorHardware::read()
 {
     if (communication_timeout()) {
-        if (!timeout_has_printed_) {
-            RCLCPP_ERROR(
+        RCLCPP_ERROR(
             rclcpp::get_logger("ManipulatorHardware"), "Communication timeout!");
-            timeout_has_printed_ = true;
-        }
         return return_type::ERROR;
     }
   
@@ -170,11 +161,8 @@ return_type ManipulatorHardware::read()
 return_type ManipulatorHardware::write()
 {
     if (communication_timeout()) {
-        if (!timeout_has_printed_) {
             RCLCPP_ERROR(
                 rclcpp::get_logger("ManipulatorHardware"), "Communication timeout!");
-            timeout_has_printed_ = true;
-        }
         return return_type::ERROR;
     }
   

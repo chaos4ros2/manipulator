@@ -68,6 +68,7 @@ class ManipulatorHardware : public hardware_interface::BaseInterface<hardware_in
         std::vector<double> hw_position_commands_;
         std::vector<double> hw_position_states_;
 
+        rclcpp::Time prev_comm_timestamp_;
 };   
 } // namespace manipulator_control
 
