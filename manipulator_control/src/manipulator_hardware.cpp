@@ -145,7 +145,7 @@ return_type ManipulatorHardware::read()
     std::vector<double> joint_positions;
     if (!driver_->read_present_joint_positions(&joint_positions)) {
         RCLCPP_ERROR(
-            rclcpp::get_logger("ManipulatorHardware"),
+            rclcpp::get_logger("ManipulatorHardware"), "Read error!");
         return return_type::ERROR;
     } else {
         for (uint i = 0; i < hw_position_states_.size(); ++i) {
@@ -167,7 +167,7 @@ return_type ManipulatorHardware::write()
   
     if (!driver_->write_goal_joint_positions(hw_position_commands_)) {
         RCLCPP_ERROR(
-            rclcpp::get_logger("ManipulatorHardware"),
+            rclcpp::get_logger("ManipulatorHardware"), "Write error!");
         return return_type::ERROR;
     }
   
