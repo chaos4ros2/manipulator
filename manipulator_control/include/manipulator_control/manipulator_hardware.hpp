@@ -62,6 +62,9 @@ class ManipulatorHardware : public hardware_interface::BaseInterface<hardware_in
         bool communication_timeout();
         
         std::shared_ptr<ManipulatorDriver> driver_;
+        // timeout_seconds_だけここで宣言する理由は聞きたい
+        double timeout_seconds_;
+
         std::vector<double> hw_position_commands_;
         std::vector<double> hw_position_states_;
 
