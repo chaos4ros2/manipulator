@@ -2,10 +2,12 @@ controller_manager:
   ros__parameters:
     update_rate: 100  # Hz
 
+    manipulator_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
     joint_state_controller:
       type: joint_state_controller/JointStateController
 
-crane_plus_arm_controller:
+manipulator_arm_controller:
   ros__parameters:
     joints:
       - joint0
