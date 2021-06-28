@@ -43,8 +43,8 @@ def generate_launch_description():
     # robot_description_config = load_file('manipulator_description', 'urdf/manipulator.urdf')
     # robot_description = {'robot_description' : robot_description_config}
 
-    robot_description_semantic_config = load_file('manipulator_moveit_config', 'config/manipulator.srdf')
-    robot_description_semantic = {'robot_description_semantic' : robot_description_semantic_config}
+    # robot_description_semantic_config = load_file('manipulator_moveit_config', 'config/manipulator.srdf')
+    # robot_description_semantic = {'robot_description_semantic' : robot_description_semantic_config}
 
     kinematics_yaml = load_yaml('manipulator_moveit_config', 'config/kinematics.yaml')
     robot_description_kinematics = { 'robot_description_kinematics' : kinematics_yaml }
@@ -77,7 +77,7 @@ def generate_launch_description():
                                executable='move_group',
                                output='screen',
                                parameters=[robot_description,
-                                           robot_description_semantic,
+                                           # robot_description_semantic,
                                            kinematics_yaml,
                                            ompl_planning_pipeline_config,
                                            trajectory_execution,
@@ -92,7 +92,7 @@ def generate_launch_description():
                      output='log',
                      arguments=['-d', rviz_config_file],
                      parameters=[robot_description,
-                                 robot_description_semantic,
+                                 # robot_description_semantic,
                                  ompl_planning_pipeline_config,
                                  kinematics_yaml])
 
