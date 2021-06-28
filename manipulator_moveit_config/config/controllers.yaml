@@ -1,7 +1,7 @@
 controller_names:
   - manipulator_controller
 
-crane_plus_arm_controller:
+manipulator_arm_controller:
   action_ns: follow_joint_trajectory
   type: FollowJointTrajectory
   default: true
