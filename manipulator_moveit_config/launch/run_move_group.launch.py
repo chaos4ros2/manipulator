@@ -114,7 +114,7 @@ def generate_launch_description():
     fake_joint_driver_node = Node(package='fake_joint_driver',
                                   executable='fake_joint_driver_node',
                                   parameters=[{'controller_name': 'manipulator_controller'},
-                                              os.path.join(get_package_share_directory("manipulator_moveit_config"), "config", "manipulator_controllers.yaml"),
+                                              os.path.join(get_package_share_directory("manipulator_moveit_config"), "config", "controllers.yaml"),
                                               os.path.join(get_package_share_directory("manipulator_moveit_config"), "config", "start_positions.yaml"),
                                               robot_description]
                                   )
