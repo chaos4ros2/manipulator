@@ -148,12 +148,12 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          crane_plus_link0:
+          link0:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          crane_plus_link1:
+          link1:
             Alpha: 1
             Show Axes: false
             Show Trail: false
