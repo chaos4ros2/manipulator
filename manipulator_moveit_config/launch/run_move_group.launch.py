@@ -110,13 +110,4 @@ def generate_launch_description():
                                  output='both',
                                  parameters=[robot_description])
 
-    # Fake joint driver
-    fake_joint_driver_node = Node(package='fake_joint_driver',
-                                  executable='fake_joint_driver_node',
-                                  parameters=[{'controller_name': 'manipulator_controller'},
-                                              os.path.join(get_package_share_directory("manipulator_moveit_config"), "config", "controllers.yaml"),
-                                              os.path.join(get_package_share_directory("manipulator_moveit_config"), "config", "start_positions.yaml"),
-                                              robot_description]
-                                  )
-
-    return LaunchDescription([ rviz_node, static_tf, robot_state_publisher, run_move_group_node, fake_joint_driver_node ])
+    return LaunchDescription([ rviz_node, static_tf, robot_state_publisher, run_move_group_node ])
