@@ -1,5 +1,5 @@
 controller_names:
-  - manipulator_controller
+  - manipulator_arm_controller
 
 manipulator_arm_controller:
   action_ns: follow_joint_trajectory
