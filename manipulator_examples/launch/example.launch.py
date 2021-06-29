@@ -41,10 +41,10 @@ def generate_launch_description():
     robot_description_config = doc.toprettyxml(indent='  ')
     robot_description = {'robot_description': robot_description_config}
 
-    # robot_description_semantic_config = load_file(
-    #     'crane_plus_moveit_config', 'config/crane_plus.srdf')
-    # robot_description_semantic = {
-    #     'robot_description_semantic': robot_description_semantic_config}
+    robot_description_semantic_config = load_file(
+        'manipulator_moveit_config', 'config/manipulator.srdf')
+    robot_description_semantic = {
+        'robot_description_semantic': robot_description_semantic_config}
 
     kinematics_yaml = load_yaml('manipulator_moveit_config', 'config/kinematics.yaml')
 
@@ -59,6 +59,7 @@ def generate_launch_description():
                         executable=LaunchConfiguration('example'),
                         output='screen',
                         parameters=[robot_description,
+                                    robot_description_semantic,
                                     kinematics_yaml])
 
     return LaunchDescription([declare_example_name, example_node])
