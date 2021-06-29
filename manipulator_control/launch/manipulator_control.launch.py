@@ -47,35 +47,16 @@ def generate_launch_description():
           },
         )
 
-    
-    joint_state_controller = ExecuteProcess(
-      cmd=['ros2', 'control', 'load_start_controller', 'joint_state_controller'],
-      output='screen',
-      shell=True
-    )
-
-    manipulator_arm_controller = ExecuteProcess(
-      cmd=['ros2', 'control', 'load_start_controller', 'manipulator_arm_controller'],
-      output='screen',
-      shell=True
-    )
-
+    load_controllers = []
+    for controller in ['joint_state_controller', 'manipulator_arm_controller']:
+        load_controllers.append(
+            ExecuteProcess(
+                cmd=['ros2', 'control', 'load_start_controller', controller],
+                shell=True,
+                output='screen',
+            )
+        )
 
     return LaunchDescription([
       controller_manager,
-      joint_state_controller,
-      manipulator_arm_controller,
-    ])
-    # load_controllers = []
-    # for controller in ['joint_state_controller', 'manipulator_arm_controller']:
-    #     load_controllers.append(
-    #         ExecuteProcess(
-    #             cmd=['ros2', 'control', 'load_start_controller', controller],
-    #             shell=True,
-    #             output='screen',
-    #         )
-    #     )
-
-    # return LaunchDescription([
-    #   controller_manager,
-    # ] + load_controllers)
+    ] + load_controllers)
