@@ -48,7 +48,7 @@ def generate_launch_description():
         )
 
     load_controllers = []
-    for controller in ['joint_state_controller']:
+    for controller in ['joint_state_controller', 'manipulator_arm_controller']:
         load_controllers.append(
             ExecuteProcess(
                 cmd=['ros2 run controller_manager spawner.py {}'.format(controller)],
