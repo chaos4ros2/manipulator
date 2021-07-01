@@ -83,11 +83,6 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          link0:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
           link1:
             Alpha: 1
             Show Axes: false
@@ -174,11 +169,6 @@ Visualization Manager:
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
         base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        link0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
