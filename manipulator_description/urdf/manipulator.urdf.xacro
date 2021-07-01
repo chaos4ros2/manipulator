@@ -3,7 +3,40 @@
 
   <xacro:include filename="$(find manipulator_description)/urdf/manipulator.ros2_control.xacro"/>
   
-  <link name="base_link"></link>
+  <xacro:property name="MESH_BASE_LINK" value="manipulator_description/meshes/visual/base_link.stl"/>
+  <xacro:property name="MESH_LINK_1" value="manipulator_description/meshes/visual/link1.stl"/>
+  <xacro:property name="MESH_CAMERA_LINK" value="manipulator_description/meshes/visual/camera_link.stl"/>
+
+  <xacro:property name="MESH_COLLISION_BASE_LINK" value="manipulator_description/meshes/collision/base_link.stl"/>
+  <xacro:property name="MESH_LINK_1" value="manipulator_description/meshes/collision/link1.stl"/>
+  <xacro:property name="MESH_COLLISION_CAMERA_LINK" value="manipulator_description/meshes/collision/camera_link.stl"/>
+  
+  <material name="black">
+    <color rgba="0.2 0.2 0.2 1.0"/>
+  </material>
+  <material name="red">
+    <color rgba=".8 0 0 1"/>
+  </material>
+  
+  <link name="base_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://${MESH_BASE_LINK}"
+              scale="1 1 1"/>
+        </geometry>
+        <material name="black"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://${MESH_COLLISION_BASE_LINK}"
+              scale="1 1 1"/>
+        </geometry>
+        <material name="black"/>
+      </collision>
+  </link>
     
   <joint name="joint0" type="continuous">
     <parent link="base_link"/>
@@ -13,7 +46,25 @@
     <limit effort="0.5" velocity="6.0" />
   </joint>
 
-  <link name="link1"></link>
+  <link name="link1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://${MESH_LINK_1}"
+            scale="1 1 1"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://${MESH_COLLISION_LINK_1}"
+            scale="1 1 1"/>
+      </geometry>
+      <material name="black"/>
+    </collision>
+  </link>
 
   <joint name="joint1" type="continuous">
     <parent link="link1"/>
@@ -25,16 +76,24 @@
     <dynamics damping="0.4" />
   </joint>
 
-   <link name="camera_link">
+  <link name="camera_link">
     <visual>
-      <origin xyz="0 0 0.0125" rpy="0 0 0" />
+      <origin xyz="0 0 0.0125" rpy="0 0 0"/>
       <geometry>
-        <box size="0.05 0.045 0.025" />
+        <mesh filename="package://${MESH_CAMERA_LINK}"
+            scale="1 1 1"/>
       </geometry>
-      <material name="red">
-        <color rgba=".8 0 0 1" />
-      </material>
+      <material name="black"/>
     </visual>
+
+    <collision>
+      <origin xyz="0 0 0.0125" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://${MESH_COLLISION_CAMERA_LINK}"
+            scale="1 1 1"/>
+      </geometry>
+      <material name="black"/>
+    </collision>
   </link>
 
   <xacro:property name="NAME_JOINT_0" value="joint0"/>
