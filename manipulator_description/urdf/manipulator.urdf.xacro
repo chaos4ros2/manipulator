@@ -8,7 +8,7 @@
   <xacro:property name="MESH_CAMERA_LINK" value="manipulator_description/meshes/visual/camera_link.stl"/>
 
   <xacro:property name="MESH_COLLISION_BASE_LINK" value="manipulator_description/meshes/collision/base_link.stl"/>
-  <xacro:property name="MESH_LINK_1" value="manipulator_description/meshes/collision/link1.stl"/>
+  <xacro:property name="MESH_COLLISION_LINK_1" value="manipulator_description/meshes/collision/link1.stl"/>
   <xacro:property name="MESH_COLLISION_CAMERA_LINK" value="manipulator_description/meshes/collision/camera_link.stl"/>
   
   <material name="black">
