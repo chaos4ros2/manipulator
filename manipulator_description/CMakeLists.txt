@@ -5,7 +5,7 @@ project(manipulator_description)
 find_package(ament_cmake REQUIRED)
 
 install(DIRECTORY
-  # meshes
+  meshes
   urdf
   launch
   DESTINATION share/${PROJECT_NAME}/
